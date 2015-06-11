@@ -75,7 +75,33 @@ println(nameToInt)
 //if a variable may possibly deal with the absense of a value, declare it as type optional
 //if an optional has a value, it != nil <-- for testing purposes
 //forced unwrapping: accessing an optional with variableName! <-- the ! forces the unwrapping
-//unwrapping a nil value leads to crash
+//unwrapping a nil value leads to crash, therefore it's important to compare it to nil (if variable != nil) 
+//before unwrapping it for use
+//we can also use optional binding to check for a value and use it 
+var friend: String? = "rnark"
+if let friendName = friend { //this line reads: If friend has a value, assign the value to 
+	println(friendName) //the constant friendName, and execute the lines of code after
+} else { //the nice part is that our new temporary variable doesnt need to be unwrapped - it 
+	println("the optional did not have a value") //takes the value that was within the optional, so (i think) it itself is not an optional
+}
+//sometimes we'll have programs with optionals that we know are always going to have a value
+//after one has been set - in these cases we use implicitly unwrapped optionals
+//String! vs String? - String! denotes an implicitly unwrapped optional, so we dont need to unwrap the variable upon use
+//just think: automatic unwrapping for implicitly unwrapped optionals
+
+
+// ***** Assertions *****
+//used when you dont have a (valid) value in an optional and therefore your program can no longer 
+//continue
+//use it to check that an essential condition is true before the program goes any further
+//	if condition is false, app terminates
+let age = 3
+assert(age >= 0, "A person's age cannot be less than 0")
+//call assert with a global assert function, first argument is a condition that evaluates to true or false
+//second argument is a message that displays if condition evaluates to false
+//so finally, use assertions when you have a value that has a possibility of being false
+//but that should definitely be true before any more of the program has run
+
 
 
 
