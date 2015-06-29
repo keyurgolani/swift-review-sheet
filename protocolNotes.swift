@@ -336,9 +336,63 @@ wishHappyBirthday(meee)
 
 
 // ***** Checking for Protocol Conformance ***** 
-
+//use is to check for protocol conformance or as to type cast to a specific protocol
+// - is returns true if an instance conforms to protocol, false if not 
+// - as? returns optional value of protocols type, returns nil if instance doesnt conform 
+//to that protocol 
+// - as! forces the downcast to the protocol type, runtime error if downcast doesnt succeeed
+protocol HasArea {
+	var area: Double { get }
+}
+class Circle: HasArea {
+	let pi = 3.1415927
+	var radius: Double 
+	var area: Double { return pi * radius * radius }
+	init(radius: Double) {
+		self.radius = radius
+	}
+}
+class Country: HasArea {
+	var area: Double
+	init(area: Double) { self.area = area }
+}
+class An {
+	var legs: Int 
+	init(legs: Int) { self.legs = legs }
+}
+let objects: [AnyObject] = [Circle(radius: 2.0), Country(area: 243_610), An(legs: 4)]
+/*for object in objects {
+	if let objectWithArea = object as? HasArea { //as? unwraps object if it conforms to HasArea and assigns it to objectWithArea. If it doesnt conform, it returns nil and thus following code doesnt run 
+		println("Area is \(objectWithArea.area)")
+	} else {
+		println("Something that doesnt have an area")
+	}
+}*/
 
 
 
 
 // ***** Optional Protocol Requirements ***** 
+//optional requirements are prefixed with optional keyword and dont HAVE to be implemented by the instance conforming to the protocol 
+//to check if an type has implemented an optional requirement, put ? after the requirement 
+//optional property and method requirements return an optional to account for the fact that it may not have been implemented by a type 
+//note: your protocol can only define optional requirements if you specify @objc before the protocol declaration
+@objc protocol CounterDataSource {
+	optional func incrementForCount(count: Int) -> Int 
+	optional var fixedIncrement: Int { get }
+}
+@objc class Counter {
+	var count = 0
+	var dataSource: CounterDataSource?
+	func increment() {
+		if let amount = dataSource?.incrementForCount?(count) {
+			count += amount 
+		} else if let amount = dataSource?.fixedIncrement {
+			count += amount
+		}
+	}
+}
+
+
+
+
