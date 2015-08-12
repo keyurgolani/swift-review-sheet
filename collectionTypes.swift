@@ -1,4 +1,5 @@
 //Swift has 2 collection types: Array and Dictionary. Array - ordered list
+//because arrays are ordered, values can be looked up with integer subscripts 
 //Dictionary - unordered list of values which can be looked up through keys
 
 // ***** Mutability of Collections *****

@@ -121,9 +121,9 @@ switch integerToDescribe {
 	case 2, 3, 5, 7, 11, 13, 17, 19:
 		description += " a prime number, and also"
 		fallthrough
-	case 2: 
+	case 5: 
 		description += " an even number, and also"
-		fallthrough //note: this will print even though the value we're checking is 5.
+		 //note: this will print even though the value we're checking is 5.
 		//this is because fallthrough DOESNT CHECK THE NEXT CONDITION IT FALLS INTO THROUGH
 		//instead, it just continues executing statements from the next case
 	default: 

@@ -75,7 +75,7 @@ for index in 0..<cizzount {
 //not: ! 
 //and: &&
 //or: ||
-//swift uses short circuit evaluation, meaning if while evaluating an %%, 
+//swift uses short circuit evaluation, meaning if while evaluating an &&, 
 //if the first value is false then the second value is not even evaluated 
 //because it wont change the outcome. Similarly, for || if the first value 
 //is true, second value wont be evaluated
