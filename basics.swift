@@ -46,7 +46,10 @@ println(UInt8.max, UInt16.max, UInt32.max) //lets us access bounds for our Int v
 //Swift always infers Double from floating point numbers
 
 
-// ***** Numeric Literals ***** (incomplete)
+// ***** Numeric Literals ***** 
+
+
+
 // ***** Numeric Type Conversion ***** (incomplete)
 // ***** Type Aliases ***** (incomplete)
 
