@@ -47,11 +47,22 @@ println(UInt8.max, UInt16.max, UInt32.max) //lets us access bounds for our Int v
 
 
 // ***** Numeric Literals ***** 
+//integers and floats can be padded with extra zeroes and can contain underscores
 
 
 
 // ***** Numeric Type Conversion ***** (incomplete)
+let twoThousand: UInt16 = 2_000
+let one: UInt8 = 1
+let twoThousandOne = twoThousand + UInt16(one)
+
+
 // ***** Type Aliases ***** (incomplete)
+//defines an alternate name for an existing type ex)
+typealias AudioSample = UInt16
+let abc: AudioSample = 56
+println(abc)
+//you can now use the name AudioSample anywhere where using UInt16 would be appropriate
 
 
 // ***** Booleans *****
