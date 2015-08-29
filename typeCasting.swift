@@ -87,6 +87,6 @@ Movie(name: "Air Bud", director: "robert e lee")]
 for mov in moviesInTheater {
 	println((mov as MediaItem).name)
 }
-
+ 
 
 // ***** Type Casting for Any and AnyObject *****
