@@ -13,7 +13,7 @@
 //before instance initialization is complete
 	//main idea: lazy variables can be initialized after instance initialization
 
-class A {
+class A { 
 	var name = "A"
 	init() {
 		println("A instance has been initialized")
