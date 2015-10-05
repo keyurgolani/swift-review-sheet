@@ -25,6 +25,15 @@ class Song: MediaItem {
 	}
 }
 
+let song = Song(name: "Song", artist: "me")
+let mi = song as MediaItem
+if mi is Song {
+	print("mi is song") //prints 
+}
+if mi is MediaItem {
+	print("mi is media item") //prints also
+}
+
 let library = [
     Movie(name: "Casablanca", director: "Michael curtiz"),
     Song(name: "Blue suede shoes", artist: "elvis presley"),
@@ -37,7 +46,7 @@ let library = [
 //so library is itself of type [MediaItem]
 
 for item in library {
-	println(item.name)
+	print(item.name)
 }
 //this works because all the elements of library are treated as MediaItem instances because we havent 
 // type casted yet. 
@@ -55,7 +64,7 @@ for item in library {
 		++songCount
 	}
 }
-println("\(movieCount) \(songCount)")
+print("\(movieCount) \(songCount)")
 //however, note that is is the type check operator, not a caster. We wont be able to treat each item like
 //a movie or song instance in that block of code because we havent cast it to another type, we've only check if one of its underlying 
 //types is either movie or song.
@@ -69,10 +78,10 @@ println("\(movieCount) \(songCount)")
 //needless to say, use as? when you arent sure if downcast will succeed
 for item in library {
     if let movie = item as? Movie {
-        println(movie.director)
+        print(movie.director)
     }
     else if let song = item as? Song {
-        println(song.artist)
+        print(song.artist)
     }
 }
 //heres why this works:
@@ -85,8 +94,49 @@ let moviesInTheater: [Movie] = [
 Movie(name: "Spike", director: "Lee"), 
 Movie(name: "Air Bud", director: "robert e lee")]
 for mov in moviesInTheater {
-	println((mov as MediaItem).name)
+	print((mov as MediaItem).name)
 }
  
 
 // ***** Type Casting for Any and AnyObject *****
+//1. AnyObject can represent instances of any class type
+//2. Any can represent instances of any type at all, including structs and functions
+
+let movies: [AnyObject] = [Movie(name: "Gremlins", director: "Jim Carrey"),
+							Movie(name: "Dark night", director: "m n shammy"),
+							Movie(name: "peanutes", director: "jukes")]
+
+for movie in movies as! [Movie] {
+	print("\(movie.director) directed \(movie.name)")
+}
+
+
+var things = [Any]()
+things.append(0)
+things.append(0.0)
+things.append(42)
+things.append(3.14159)
+things.append("hello")
+things.append((3.0, 5.0))
+things.append(Movie(name: "Ghost busters", director: "Ivan"))
+things.append( { (name: String) -> String in "Hello, \(name)" } )
+
+for thing in things {
+	switch thing {
+		case 0 as Int: print("zero as an int")
+		case 0 as Double: print("zero as a double")
+		case let someInt as Int: print("an integer value of \(someInt)")
+		case let someDouble as Double where someDouble > 0: 
+			print("a positive double value of \(someDouble)")
+		case is Double: print("some other double value that i dont want to print")
+		case let someString as String: print("a string value of \(someString)")
+		case let (x, y) as (Double, Double): print("x y point")
+		case let movie as Movie: print("a movie called \(movie.name)")
+		case let stringConverter as String -> String: print(stringConverter("Michale"))
+		default: break
+		}
+}
+
+
+
+
